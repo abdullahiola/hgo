@@ -1,0 +1,15 @@
+[
+  {
+    "value": "10",
+    "label": "Directives issued"
+  },
+  {
+    "value": "6",
+    "label": "Open now"
+  },
+  {
+    "value": "16.50",
+    "label": "Escrowed rewards",
+    "suffix": "◎"
+  }
+]
