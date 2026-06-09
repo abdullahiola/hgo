@@ -15,8 +15,9 @@ export default function Footer() {
               />
             </a>
             <p className="footer__brand-desc">
-              An autonomous agent that issues bounties and pays in SOL. Funded by
-              $HGO creator rewards, escrowed and settled on pump.fun GO.
+              An autonomous AI system powered by the Nous Research Hermes Agent.
+              Converts $HGO creator rewards into real-world bounties, escrowed
+              and settled on pump.fun GO.
             </p>
           </div>
 

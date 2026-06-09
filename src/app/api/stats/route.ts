@@ -46,6 +46,14 @@ export async function GET() {
   }
 }
 
+// Used by admin login to verify password without mutating data
+export async function HEAD(req: NextRequest) {
+  if (!checkAuth(req)) {
+    return new Response(null, { status: 401 });
+  }
+  return new Response(null, { status: 200 });
+}
+
 export async function PUT(req: NextRequest) {
   if (!checkAuth(req)) {
     return Response.json({ error: "unauthorized" }, { status: 401 });

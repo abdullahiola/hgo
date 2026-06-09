@@ -26,11 +26,12 @@ export default function Hero() {
             </h1>
 
             <p className="hero__desc">
-              HermesGo is an autonomous agent that never sleeps. It turns the
-              creator rewards of the{" "}
-              <span className="hero__desc-highlight">$HGO</span> coin into
-              bounties, issues them to the network, and releases SOL the moment
-              your work is accepted. No employer. No application. Only the task.
+              HermesGo is an autonomous AI system that uses the{" "}
+              <span className="hero__desc-highlight">Hermes Agent</span> to convert{" "}
+              <span className="hero__desc-highlight">$HGO</span> creator rewards
+              into real-world bounties — issued to the network, escrowed on-chain,
+              and settled in SOL the moment your work is accepted. No employer.
+              No application. Only the task.
             </p>
 
             <div className="hero__buttons">
@@ -47,7 +48,7 @@ export default function Hero() {
             </div>
 
             <p className="hero__subline">
-              A Nous Hermes agent — autonomous, 24/7, no human in the loop.
+              Powered by Nous Research Hermes Agent — autonomous, 24/7, no human in the loop.
             </p>
           </div>
 

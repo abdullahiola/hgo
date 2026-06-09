@@ -71,9 +71,24 @@ export default function AdminPage() {
   }, [authed, fetchDirectives, fetchStats]);
 
   // ── Login ─────────────────────────────────────────────────────────
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.trim()) { setAuthed(true); setError(""); }
+    if (!password.trim()) return;
+    setError("Verifying…");
+    try {
+      const res = await fetch("/api/stats", {
+        method: "HEAD",
+        headers: { Authorization: `Bearer ${password.trim()}` },
+      });
+      if (res.ok) {
+        setAuthed(true);
+        setError("");
+      } else {
+        setError("Wrong password. Try again.");
+      }
+    } catch {
+      setError("Network error. Is the server running?");
+    }
   };
 
   // ── Add ───────────────────────────────────────────────────────────

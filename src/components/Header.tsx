@@ -37,6 +37,7 @@ export default function Header() {
           <a href="#terminal">Engine</a>
           <a href="#rules">Rules</a>
           <a href="#faq">FAQ</a>
+          <a href="/whitepaper" className="header__nav-whitepaper">Whitepaper</a>
         </nav>
 
         <div className="header__actions">
