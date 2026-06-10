@@ -1,4 +1,5 @@
 import { Directive } from "@/lib/data";
+import SolanaIcon from "@/components/SolanaIcon";
 
 interface DirectiveCardProps {
   directive: Directive;
@@ -26,7 +27,7 @@ export default function DirectiveCard({ directive }: DirectiveCardProps) {
               <p className="directive-card__reward-label">Reward</p>
               <p className="directive-card__reward-value">
                 {directive.reward}{" "}
-                <span className="directive-card__reward-sol">◎</span>
+              <SolanaIcon size={13} className="directive-card__sol-icon" />
               </p>
             </div>
             <span className="directive-card__category">{directive.category}</span>
@@ -97,7 +98,7 @@ export default function DirectiveCard({ directive }: DirectiveCardProps) {
             <p className="directive-card__reward-label">Reward</p>
             <p className="directive-card__reward-value">
               {directive.reward}{" "}
-              <span className="directive-card__reward-sol">◎</span>
+              <SolanaIcon size={13} className="directive-card__sol-icon" />
             </p>
           </div>
           <span className="directive-card__category">{directive.category}</span>

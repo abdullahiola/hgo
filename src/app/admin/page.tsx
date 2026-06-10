@@ -29,7 +29,7 @@ const CATEGORIES = [
 
 const EMPTY_FORM: Omit<DirectiveData, "id"> = {
   title: "", description: "", reward: "0.5", category: "content",
-  status: "open", featured: false, locked: false, pumpFunUrl: "https://pump.fun",
+  status: "open", featured: false, locked: true, pumpFunUrl: "https://pump.fun",
 };
 
 export default function AdminPage() {
@@ -126,6 +126,19 @@ export default function AdminPage() {
       await fetchDirectives();
     } catch { setError("Network error"); }
     setSaving(false);
+  };
+
+  // ── Toggle lock (quick action) ─────────────────────────────────────────
+  const handleToggleLock = async (d: DirectiveData) => {
+    try {
+      const res = await fetch(`/api/directives?id=${d.id}`, {
+        method: "PUT",
+        headers: authHeaders,
+        body: JSON.stringify({ ...d, locked: !d.locked }),
+      });
+      if (res.ok) await fetchDirectives();
+      else setError("Failed to toggle lock");
+    } catch { setError("Network error"); }
   };
 
   // ── Delete ────────────────────────────────────────────────────────
@@ -266,33 +279,60 @@ export default function AdminPage() {
               )}
 
               {directives.map((d) => (
-                <div key={d.id} className="admin__directive-item" style={{ flexDirection: "column", gap: "1rem" }}>
+                <div key={d.id} className="admin__directive-item">
 
                   {/* ── View mode ── */}
                   {editingId !== d.id && (
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
+                    <>
                       <div className="admin__directive-info">
                         <p className="admin__directive-id">{d.id}</p>
                         <p className="admin__directive-title-text">{d.title}</p>
                         <p className="admin__directive-meta">
-                          {d.reward} SOL · {d.status} · {d.category}
-                          {d.featured ? " · ★ featured" : ""}{d.locked ? " · 🔒 locked" : ""}
+                          {d.reward} SOL
+                          <span style={{ opacity: 0.4 }}> · </span>{d.status}
+                          <span style={{ opacity: 0.4 }}> · </span>{d.category}
+                          {d.featured && <span style={{ color: "#f6c90e" }}> · ★ featured</span>}
+                          {d.locked
+                            ? <span style={{ color: "var(--muted)" }}> · 🔒 locked</span>
+                            : <span style={{ color: "hsl(145,65%,48%)" }}> · ✓ open</span>}
                         </p>
                         {d.pumpFunUrl && (
                           <a href={d.pumpFunUrl} target="_blank" rel="noopener noreferrer"
-                            style={{ fontSize: "0.75rem", color: "var(--accent)", fontFamily: "var(--font-mono)", wordBreak: "break-all" }}>
+                            style={{ fontSize: "0.72rem", color: "var(--primary)", fontFamily: "var(--font-mono)", opacity: 0.7, wordBreak: "break-all", display: "block", marginTop: "0.375rem" }}>
                             {d.pumpFunUrl}
                           </a>
                         )}
                       </div>
-                      <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
-                        <button className="admin__submit" style={{ padding: "0.4rem 0.9rem", fontSize: "0.8rem" }}
-                          onClick={() => startEdit(d)}>
+
+                      <div className="admin__directive-actions">
+                        <button
+                          onClick={() => handleToggleLock(d)}
+                          title={d.locked ? "Unlock directive" : "Lock directive"}
+                          style={{
+                            padding: "0.35rem 0.8rem",
+                            fontSize: "0.78rem",
+                            fontFamily: "var(--font-mono)",
+                            border: `1px solid ${d.locked ? "var(--border)" : "hsl(145,65%,38%)"}`,
+                            borderRadius: "4px",
+                            background: d.locked ? "transparent" : "hsla(145,65%,48%,0.1)",
+                            color: d.locked ? "var(--muted)" : "hsl(145,65%,52%)",
+                            cursor: "pointer",
+                            transition: "all 0.15s",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {d.locked ? "🔒 Locked" : "✓ Open"}
+                        </button>
+                        <button
+                          className="admin__submit"
+                          style={{ padding: "0.35rem 0.9rem", fontSize: "0.78rem" }}
+                          onClick={() => startEdit(d)}
+                        >
                           Edit
                         </button>
                         <button className="admin__delete-btn" onClick={() => handleDelete(d.id)}>Delete</button>
                       </div>
-                    </div>
+                    </>
                   )}
 
                   {/* ── Edit mode ── */}

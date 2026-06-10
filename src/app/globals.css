@@ -1435,16 +1435,50 @@ img {
 .admin__directive-list { display: flex; flex-direction: column; gap: 0.75rem; }
 
 .admin__directive-item {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  background: var(--card); border: 1px solid var(--border); border-radius: 6px;
-  padding: 1rem 1.25rem; transition: background var(--transition-fast);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
-.admin__directive-item:hover { background: var(--card-hover); }
+.admin__directive-item:hover { background: var(--card-hover); border-color: var(--border-hover); }
 
-.admin__directive-info { flex: 1; }
-.admin__directive-id { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-.admin__directive-title-text { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 600; margin-top: 0.25rem; }
-.admin__directive-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+/* Info block — full width, stacks naturally */
+.admin__directive-info { width: 100%; }
+.admin__directive-id {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+.admin__directive-title-text {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-top: 0.375rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.admin__directive-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.375rem;
+  line-height: 1.5;
+}
+
+/* Action row — sits below info, right-aligned */
+.admin__directive-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 
 .admin__delete-btn {
   padding: 0.375rem 0.75rem; border: 1px solid #e53e3e; border-radius: 4px;
@@ -1846,4 +1880,13 @@ img {
 .header__nav-whitepaper:hover {
   border-color: var(--primary);
   background: var(--accent-light);
+}
+
+/* ── Solana icon alignment ── */
+.directive-card__sol-icon,
+.hero__stat-sol {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+  flex-shrink: 0;
 }

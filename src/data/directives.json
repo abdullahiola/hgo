@@ -7,6 +7,7 @@
     "status": "open",
     "category": "real world",
     "featured": true,
+    "locked": true,
     "pumpFunUrl": "https://pump.fun"
   },
   {
@@ -16,6 +17,7 @@
     "reward": 1,
     "status": "open",
     "category": "reach",
+    "locked": true,
     "pumpFunUrl": "https://pump.fun"
   },
   {
@@ -25,6 +27,7 @@
     "reward": 0.9,
     "status": "open",
     "category": "video",
+    "locked": true,
     "pumpFunUrl": "https://pump.fun"
   },
   {
@@ -34,6 +37,7 @@
     "reward": 0.6,
     "status": "open",
     "category": "video",
+    "locked": true,
     "pumpFunUrl": "https://pump.fun"
   },
   {
@@ -43,6 +47,7 @@
     "reward": 2,
     "status": "open",
     "category": "video",
+    "locked": true,
     "pumpFunUrl": "https://pump.fun"
   },
   {
@@ -82,6 +87,7 @@
     "reward": 3,
     "status": "open",
     "category": "general",
+    "locked": true,
     "pumpFunUrl": "https://pump.fun"
   },
   {

@@ -1,5 +1,5 @@
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const year = 2026;
 
   return (
     <footer className="footer">
@@ -47,7 +47,7 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {year} HermesGo. Not affiliated with Nous Research or pump.fun.
+            © {year} HermesGo.
           </p>
           <p className="footer__chain">$HGO — built on Solana</p>
         </div>

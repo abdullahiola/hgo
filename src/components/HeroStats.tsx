@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import SolanaIcon from "@/components/SolanaIcon";
 
 interface Stat {
   value: string;
@@ -31,9 +32,13 @@ export default function HeroStats() {
           <p className="hero__stat-value">
             {stat.value}
             {stat.suffix && (
-              <span style={{ fontSize: "1rem", marginLeft: 4, color: "var(--muted)" }}>
-                {stat.suffix}
-              </span>
+              stat.suffix === "◎" ? (
+                <SolanaIcon size={14} className="hero__stat-sol" />
+              ) : (
+                <span style={{ fontSize: "1rem", marginLeft: 4, color: "var(--muted)" }}>
+                  {stat.suffix}
+                </span>
+              )
             )}
           </p>
           <p className="hero__stat-label">{stat.label}</p>
