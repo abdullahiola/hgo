@@ -7,8 +7,8 @@ export default function Header() {
   const [copied, setCopied] = useState(false);
   const { theme, toggle } = useTheme();
 
-  const contractAddress = "XXXX…pump";
-  const fullCA = "XXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXXpump";
+  const contractAddress = "8htg…pump";
+  const fullCA = "8htgpKstXo4q5aa3PaTLoHdgShhudA74e5YTkZHPpump";
 
   const handleCopy = async () => {
     try {
