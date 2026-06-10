@@ -4,7 +4,7 @@ export interface Directive {
   id: string;
   title: string;
   description: string;
-  reward: number;
+  reward: number | string;
   status: DirectiveStatus;
   category: string;
   featured?: boolean;

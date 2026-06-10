@@ -52,15 +52,24 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const directives = await readDirectives();
 
+    // Generate next ID that doesn't collide with existing ones
+    const existingNums = directives
+      .map((d: { id: string }) => {
+        const match = d.id.match(/(\d+)$/);
+        return match ? parseInt(match[1], 10) : 0;
+      })
+      .filter((n: number) => !isNaN(n));
+    const nextNum = existingNums.length > 0 ? Math.max(...existingNums) + 1 : 1;
+
     const newDirective = {
-      id: `HGO-${String(directives.length + 1).padStart(3, "0")}`,
+      id: `DIRECTIVE-${String(nextNum).padStart(4, "0")}`,
       title: body.title,
       description: body.description,
-      reward: body.reward || "0.5",
+      reward: String(body.reward || "0.5"),
       status: body.status || "open",
       category: body.category || "content",
-      locked: body.locked || false,
-      featured: body.featured || false,
+      locked: body.locked ?? false,
+      featured: body.featured ?? false,
       pumpFunUrl: body.pumpFunUrl || "https://pump.fun",
     };
 

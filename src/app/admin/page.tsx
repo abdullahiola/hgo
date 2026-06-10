@@ -51,9 +51,10 @@ export default function AdminPage() {
   const [statsMsg, setStatsMsg] = useState("");
 
   // ── Helpers ───────────────────────────────────────────────────────
+  // Always use trimmed password in auth headers so login and API calls match
   const authHeaders = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${password}`,
+    Authorization: `Bearer ${password.trim()}`,
   };
 
   const fetchDirectives = useCallback(async () => {
@@ -73,14 +74,17 @@ export default function AdminPage() {
   // ── Login ─────────────────────────────────────────────────────────
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!password.trim()) return;
+    const trimmed = password.trim();
+    if (!trimmed) return;
     setError("Verifying…");
     try {
       const res = await fetch("/api/stats", {
         method: "HEAD",
-        headers: { Authorization: `Bearer ${password.trim()}` },
+        headers: { Authorization: `Bearer ${trimmed}` },
       });
       if (res.ok) {
+        // Store trimmed password so authHeaders always matches what the server expects
+        setPassword(trimmed);
         setAuthed(true);
         setError("");
       } else {
